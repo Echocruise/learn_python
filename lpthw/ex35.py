@@ -3,11 +3,13 @@ from sys import exit
 def gold_room():
     print("This room is full of gold. How much do you take?")
     choice = input(">")
-    if "0"in choice or "1" in choice:
-        how_much = int(choice)
-    else:
-        dead("Man, learn to type a number.")
-
+    while True:
+        try :
+            how_much = int(choice)
+        except ValueError:
+            dead("Man, learn to type a number.")
+            continue
+        break
     if how_much <50:
         print("Nice, you're not greedy,you win!")
         exit(0)
@@ -22,7 +24,7 @@ def bear_room():
     bear_moved = False
     while True:
         choice = input(">")
-        if choice = "Take honey":
+        if choice == "Take honey":
             dead("The bear looks ar you then slaps your face off.")
         elif choice == "taunt bear" and not bear_moved:
             print("The bear has moved from the door.")
@@ -58,7 +60,7 @@ def start():
 
     choice = input(">")
     if choice == "left":
-        bear_room():
+        bear_room()
     elif choice == "right":
         cthulhu_rrom()
     else:
